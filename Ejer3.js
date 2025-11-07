@@ -1,47 +1,57 @@
-//Ejercicio 3: Reproductor de Música
-const prompt = require("prompt-sync")();
+// Ejercicio 3: Sistema de productos electrónicos
 
-function Reproductor() 
+class producto 
 {
-  this.estado = "Detenido";
-
-  this.play = function() 
-  {
-    if (this.estado === "Detenido" || this.estado === "Pausado") 
+    constructor(nombre, precio, marca) 
     {
-      this.estado = "Reproduciendo";
-      return "Reproduciendo musica...";
-    } 
-    else 
-    {
-      return "Ya se esta reproduciendo musica";
+        this.nombre = nombre;
+        this.precio = precio;
+        this.marca = marca;
     }
-  };
-
-  this.pausar = function() 
-  {
-    if (this.estado === "Reproduciendo") 
+    
+    descripcion() 
     {
-      this.estado = "Pausado";
-      return "Musica pausada";
-    } 
-    else 
-    {
-      return "No hay musica reproduciendose";
+        return this.nombre + ", " + this.marca + ", " + this.precio;
     }
-  };
-
-  this.detener = function() 
-  {
-    this.estado = "Detenido";
-    return "Musica detenida";
-  };
 }
 
-let miReproductor = new Reproductor();
 
-console.log(miReproductor.play());
-console.log(miReproductor.pausar());
-console.log(miReproductor.play());
-console.log(miReproductor.detener());
-console.log(miReproductor.pausar());
+class telefono extends producto 
+{
+    constructor(nombre, precio, marca, almacenamiento, ram) 
+    {
+        super(nombre, precio, marca);
+        this.almacenamiento = almacenamiento;
+        this.ram = ram;
+    }
+    
+    descripcion() 
+    {
+        return this.nombre + ", " + this.marca + ", " + this.precio + ", " + this.almacenamiento + " Gb, " + this.ram + " Gb Ram";
+    }
+}
+
+
+class laptop extends producto 
+{
+    constructor(nombre, precio, marca, procesador, pulgadas) 
+    {
+        super(nombre, precio, marca);
+        this.procesador = procesador;
+        this.pulgadas = pulgadas;
+    }
+    
+    descripcion() 
+    {
+        return this.nombre + ", " + this.marca + ", " + this.precio + ", " + this.procesador + ", " + this.pulgadas + " pulg";
+    }
+}
+
+
+const tel1 = new telefono("Nothing Phone 4", 4500000, "Nothing", 256, 12);
+const lap1 = new laptop("Macbook Pro", 8000000, "Apple", "M5", 14);
+
+
+console.log(tel1.descripcion());
+console.log(lap1.descripcion());
+
